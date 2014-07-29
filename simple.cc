@@ -29,6 +29,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+constexpr struct _T {
+    int i;
+    constexpr _T() :i(10) {}
+    constexpr _T(int j) :i(j) {}
+    template < typename X >
+    constexpr _T def(X x) const {
+        return _T(x);
+    }
+} task;
+
+constexpr auto t1 = task.def(100);
+
 struct Hoge {
     template < typename X >
     Hoge(X x) {
@@ -48,10 +60,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 int main(void)
 {
-    Hoge h([](int x) {
-        printf("%d", x);
-    });
-
+    printf("%d\n", t1.i);
     GLFWwindow* window;
 
     glfwSetErrorCallback(error_callback);
