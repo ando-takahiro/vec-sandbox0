@@ -29,17 +29,24 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-constexpr struct _T {
-    int i;
-    constexpr _T() :i(10) {}
-    constexpr _T(int j) :i(j) {}
-    template < typename X >
-    constexpr _T def(X x) const {
-        return _T(x);
-    }
-} task;
+template < typename F >
+struct Wrapper {
+    F f;
+    constexpr Wrapper(F _f) : f(_f) {}
+    template < typename Context >
+    void operator () (Context context) const {
+        f(context);
+    };
+};
 
-constexpr auto t1 = task.def(100);
+template < typename F >
+constexpr auto def(F f) {
+    return Wrapper<F>(f);
+}
+
+auto t1(def([](auto x) {
+    printf("%d\n", x);
+}));
 
 struct Hoge {
     template < typename X >
@@ -60,7 +67,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 int main(void)
 {
-    printf("%d\n", t1.i);
+    t1(100);
     GLFWwindow* window;
 
     glfwSetErrorCallback(error_callback);
