@@ -20,8 +20,12 @@ namespace task {
     };
 
     template <typename Body>
-    _task<Body> task(const Body&& b) {return _task<Body>(b);}
+    _task<Body> exec(const Body&& b) {return _task<Body>(b);}
 
+    //template <template <typename C, typename N> F(C& c, N&& n)>
+    //_task<Body> exec(const F&& f) {return _task<F<C, N>>(f);}
+
+    /*
     template <typename... Args>
     class _depends {
         Args... args;
@@ -38,7 +42,7 @@ namespace task {
     _task<Body> depends(Args... args) {
         int count = sizeof...(Args);
         return _depends<Args...>(args);
-    }
+    }*/
 }
 }
 
