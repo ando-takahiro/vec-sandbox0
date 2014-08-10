@@ -78,11 +78,12 @@ int main() {
     }
 
     std::cout << "c.task1\n";
-    for (auto& i: c.task1) {
+    for (auto i: c.task1) {
         std::cout << i << ", ";
     }
+    std::cout << std::endl;
     std::cout << "c.task2\n";
-    for (auto& i: c.task2) {
+    for (auto i: c.task2) {
         std::cout << i << ", ";
     }
     std::cout << std::endl << std::endl;
@@ -91,11 +92,12 @@ int main() {
     compiled_task.fn(c);
 
     std::cout << "c.task1\n";
-    for (auto& i: c.task1) {
+    for (auto i: c.task1) {
         std::cout << i << ", ";
     }
+    std::cout << std::endl;
     std::cout << "c.task2\n";
-    for (auto& i: c.task2) {
+    for (auto i: c.task2) {
         std::cout << i << ", ";
     }
     std::cout << std::endl << std::endl;
@@ -104,11 +106,12 @@ int main() {
     compiled_task.fn(c);
 
     std::cout << "c.task1\n";
-    for (auto& i: c.task1) {
+    for (auto i: c.task1) {
         std::cout << i << ", ";
     }
+    std::cout << std::endl;
     std::cout << "c.task2\n";
-    for (auto& i: c.task2) {
+    for (auto i: c.task2) {
         std::cout << i << ", ";
     }
     std::cout << std::endl << std::endl;
