@@ -43,11 +43,6 @@ struct callback_chain {
         };
         return callback_chain<decltype(new_fn)>(new_fn);
     }
-
-    template <typename Context>
-    auto run(Context& c) const {
-        return fn(c);
-    }
 };
 
 template <>
@@ -78,42 +73,42 @@ int main() {
         std::array<int, 100> task2;
     } c;
 
-    for (auto&& i: c.task1) {
+    for (auto& i: c.task1) {
         i = 0;
     }
 
     std::cout << "c.task1\n";
-    for (auto&& i: c.task1) {
+    for (auto& i: c.task1) {
         std::cout << i << ", ";
     }
     std::cout << "c.task2\n";
-    for (auto&& i: c.task2) {
+    for (auto& i: c.task2) {
         std::cout << i << ", ";
     }
     std::cout << std::endl << std::endl;
 
     std::cout << "run\n";
-    compiled_task.run(c);
+    compiled_task.fn(c);
 
     std::cout << "c.task1\n";
-    for (auto&& i: c.task1) {
+    for (auto& i: c.task1) {
         std::cout << i << ", ";
     }
     std::cout << "c.task2\n";
-    for (auto&& i: c.task2) {
+    for (auto& i: c.task2) {
         std::cout << i << ", ";
     }
     std::cout << std::endl << std::endl;
 
     std::cout << "run\n";
-    compiled_task.run(c);
+    compiled_task.fn(c);
 
     std::cout << "c.task1\n";
-    for (auto&& i: c.task1) {
+    for (auto& i: c.task1) {
         std::cout << i << ", ";
     }
     std::cout << "c.task2\n";
-    for (auto&& i: c.task2) {
+    for (auto& i: c.task2) {
         std::cout << i << ", ";
     }
     std::cout << std::endl << std::endl;
